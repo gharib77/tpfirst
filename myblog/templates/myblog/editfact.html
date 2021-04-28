@@ -1,0 +1,50 @@
+{% extends 'myblog/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy}}
+        <button type="button" class="btn btn-sm btn-outline-success add-form-row"
+        id="{{ formset.prefix }}">New Ecrivain</button>
+        <table  class="table form-table table-bordered table-sm">
+            <thead class="text-center">
+                <tr>
+                    <th>quantite</th>
+                    <th>article</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for form_data in formset %}
+                    <tr class="item">
+                    {{form_data.id|as_crispy_field}}
+                        <td style="width: 10%">
+                            {{ form_data.qte|as_crispy_field }}
+                        </td>
+                        <td style="width: 20%">
+                            {{ form_data.article|as_crispy_field }}
+                        </td>
+                        <td style="width: 15%">{{form_data.DELETE}}
+                            
+                            <button type="button" class="btn btn-danger btn-sm remove-form-row"
+                                    id="{{ formset.prefix }}">
+                                
+                                Delete
+                            </button>
+                    
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {{ formset.management_form }}
+        <button type="submit">Save</button>
+    </form>
+</div> 
+
+{% endblock content %}
+{% block javascript %}
+  <script src="{% static 'js/formset_dy.js' %}"></script>
+{% endblock javascript %}

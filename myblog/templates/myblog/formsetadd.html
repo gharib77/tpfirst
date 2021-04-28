@@ -1,0 +1,31 @@
+{% extends 'myblog/base.html' %}
+{% load static %}
+{% block content %}
+    <form method='post'>
+        {% csrf_token %}
+        <input type="text" name="recordelete" id="recordelete" >
+        {{ formset.management_form }}
+        <button type="button" class="add-form-row"
+            id="{{ formset.prefix }}">New produit</button>
+        <table >
+            {% for formset in formset %}
+                <tr class='item'>
+                
+                    <td>{{formset.id}}{{formset.name}}</td>
+                    <td>{{formset.libelle}}</td>
+                    <td>{{formset.prix}}</td>
+                    <td>{{formset.dateprod}}</td>
+                    <td>{{formset.DELETE}}
+                        <button class ="remove-form-row"
+                            id="{{ formset.prefix }}">Delete
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>        
+        <input type="submit" value="Create">
+    </form>
+{% endblock content %}
+{% block javascript %}
+  <script src="{% static 'js/formset_dy.js' %}"></script>
+{% endblock javascript %}

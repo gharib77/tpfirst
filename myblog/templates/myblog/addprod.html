@@ -1,0 +1,35 @@
+
+
+
+{% extends 'myblog/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <form method='post' novalidate>
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form.name}}
+                </div>
+                <div class="col-md-6">
+                    {{form.libelle}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{form.prix}}
+                </div>
+                <div class="col-md-6">
+                    {{form.dateprod}}
+                </div>
+            </div>
+            <input type='submit' class ="btn btn-outline-primary" value='save'>
+            <i class ='fa fa-pencil-alt'></i>
+        </form>
+    </div>
+{% endblock content %}
+{% block javascript %}
+{% endblock javascript %}
+
+
+

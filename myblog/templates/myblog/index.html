@@ -1,0 +1,29 @@
+{% extends 'myblog/base.html' %}
+
+{% block content %}
+    <div><p>{{ request.user.username}}</p></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Unite</th>
+                <th>Grade1</th>
+                <th>Grade2</th>
+                <th>Grade3</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for res in results %}
+                <tr>
+                    <td>{{ res.lib_unt }}</td>
+                    <td>{{ res.s1}}</td>
+                    <td>{{ res.s2}}</td>
+                    <td>{{ res.s3}}</td>
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+{% endblock content %}
+

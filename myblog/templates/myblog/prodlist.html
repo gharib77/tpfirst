@@ -1,0 +1,29 @@
+{% extends "myblog/base.html" %}
+{% load static %}
+{% block content %}
+    <table>
+        <thead>
+        </thead>
+            <th>name</th>
+            <th>libelle</th>
+            <th>prix</th>
+            <th>Date</th>
+            <th>actions</th>
+        </thead>
+        <tbody>
+            {% for produit in produits %}
+                <tr>
+                    <td>{{ produit.name}}</td>
+                    <td>{{ produit.libelle}}</td>
+                    <td>{{ produit.prix}}</td>
+                    <td>{{ produit.dateprod|date:'d/m/Y'}}</td>
+                    <td>
+                        <a href="{% url 'myblog:editprod' produit.id %}" >Editer</a>
+                        <a href="{% url 'myblog:delprod' produit.id %}" >Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
+{% block javascript %}{% endblock javascript %}

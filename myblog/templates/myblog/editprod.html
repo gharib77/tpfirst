@@ -1,0 +1,27 @@
+{% extends 'myblog/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <form method="post" action="">
+            {% csrf_token %}
+                        <div class="row">
+                    <div class="col-md-6">
+                        {{ form.name}}
+                    </div>
+                    <div class="col-md-6">
+                        {{form.libelle}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        {{form.prix}}
+                    </div>
+                    <div class="col-md-6">
+                        {{form.dateprod}}
+                    </div>
+                </div>
+            <input type="submit" value="save">
+        </form>
+    </div>
+{% endblock content %}
+{% block javascript %}{% endblock javascript %}

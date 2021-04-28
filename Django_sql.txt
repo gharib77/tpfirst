@@ -1,0 +1,32 @@
+Personne.objects.values('unite').annotate(g1=Count(Case(When(grade=1, then=1))),g2=Count(Case(When(grade=2, then=1 ))),g3=Count(Case(When(grade=3, then=1 ))))
+
+Personne.objects.values('unite').annotate(g1=Count(Case(When(grade=1, then=1))),g2=Count(Case(When(grade=2, then=1 ))),g3=Count(Case(When(grade=3, then=1 ))),tot=Count('grade'))
+
+Unite.objects.values('lib_unt').annotate(g1=Count(Case(When(personne__grade=1, then=1))),g2=Count(Case(When(personne__grade=2, then=1 ))),g3=Count(Case(When(personne__grade=3, then=1 ))),tot=Count('personne__grade'))
+
+Unite.objects.values('lib_unt').annotate(g1=Count(Case(When(personne__grade=1, then=1))),g2=Count(Case(When(personne__grade=2, then=1))),g3=Count(Case(When(personne__grade=3, then=1))),s1=Sum(Case(When(personne__grade=1, then='personne__qte'))),s2=Sum(Case(When(personne__grade=2, then='personne__qte' ))),s3=Sum(Case(When(personne__grade=3, then='personne__qte' ))))
+
+Personne.objects.values_list('unite').annotate(s1=Sum(Case(When(grade=1, then='qte'),default=0)),s2=Sum(Case(When(grade=2, then='qte'),default=0)),s3=Sum(Case(When(grade=3, then='qte'),default=0)))
+
+Unite.objects.values('lib_unt').filter(personne__annee=2020).annotate(
+s1=Sum(Case(When(personne__grade=1, then='personne__qte'),default=0)),
+s2=Sum(Case(When(personne__grade=2, then='personne__qte'),default=0)),s3=Sum(Case(When(personne__grade=3, then='personne__qte'),default=0)))
+
+
+"""         widgets = {
+            'date_prod': forms.DateInput(
+                format='%d/%m/%Y',
+                attrs={
+                    'type': 'date',
+                }
+            )
+
+        } """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # add custom error messages
+        self.fields['name'].error_messages.update({
+            'required': 'Please let',
+        })

@@ -1,0 +1,26 @@
+{% extends 'myblog/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <table >
+            <thead>
+                <th>Reference</th>
+                <th>date</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                {% for  item in factures %}
+                    <tr >
+                        <td>{{item.reference}}</td>
+                        <td>{{item.date_fact|date:'d/m/Y'}}</td>
+                       <td>
+                            <a href="{% url 'myblog:editfact' item.id %}">Edidt</a>
+                            <a href="{% url 'myblog:delfact' item.id %}">Delete</a>
+                       </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
+{% block javascript %}{% endblock javascript %}

@@ -1,0 +1,25 @@
+{% extends "myblog/base.html" %}
+{% block content %}
+    <table>
+        <thead>
+        </thead>
+            <th>name</th>
+            <th>date_entr</th>
+            <th>photos</th>
+        </thead>
+        <tbody>
+            {% for etudient in etudients %}
+                <tr>
+                    <td>{{ etudient.name}}</td>
+                    <td>{{ etudient.date_entr}}</td>
+                    <td>
+                        {% if etudient.photo %}
+                            <img src="{{etudient.photo.url}}" >
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
+{% block javascript %}{% endblock javascript %}
